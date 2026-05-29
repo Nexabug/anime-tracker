@@ -1,0 +1,416 @@
+/* ==========================================
+   RESET & ROOT
+========================================== */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  /* Colors */
+  --bg-primary: #0f0f1a;
+  --bg-secondary: #181825;
+  --bg-navbar: #111827;
+  --bg-input: #202033;
+
+  --primary: #8b5cf6;
+  --primary-hover: #a855f7;
+  --secondary: #38bdf8;
+  --active: #22d3ee;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+
+  --border: #2a2a3a;
+
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+  --danger: #ef4444;
+  --planned: #a855f7;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+
+  --gradient-primary: linear-gradient(135deg, #8b5cf6, #38bdf8);
+}
+
+/* ==========================================
+   APP
+========================================== */
+
+.body {
+  min-height: 100vh;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  transition: all 0.3s ease;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.header {
+  background: var(--bg-navbar);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 30px;
+}
+
+.logo {
+  width: 75px;
+  border-radius: 50%;
+  transition: 0.2s ease;
+}
+
+.logo:hover {
+  box-shadow: 0 0 10px var(--active);
+  transform: translateY(-3px);
+}
+
+.search {
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  background: var(--bg-input);
+  color: var(--text-primary);
+  transition: 0.4s ease;
+  width: 250px;
+}
+
+.search:hover,
+.search:focus {
+  width: 400px;
+  box-shadow: 0 0 10px var(--active);
+}
+
+/* ==========================================
+   MAIN LAYOUT
+========================================== */
+
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  max-width: 90%;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+/* ==========================================
+   COMPONENT WRAPPER
+========================================== */
+
+.Component {
+  flex: 1;
+  position: relative;
+
+  background: rgba(54, 7, 72, 0.591);
+  padding: 20px;
+  border-radius: 20px;
+
+  height: 100vh;
+  max-height: 100vh;
+
+  min-width: 500px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.Component::-webkit-scrollbar {
+  width: 12px;
+}
+
+.Component::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.Component::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.Component::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.compo-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  border: none;
+  border-radius: 50%;
+  padding: var(--radius-md);
+
+  background: var(--primary);
+  color: var(--bg-primary);
+}
+
+.compo-btn:hover {
+  background: var(--primary-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.hide {
+  visibility: hidden;
+}
+
+/* ==========================================
+   ANIME LIST
+========================================== */
+
+.List {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Anime {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+
+  border-radius: 20px;
+  background: var(--bg-input);
+
+  transition: 0.2s ease;
+}
+
+.Anime:hover {
+  background: var(--active);
+  color: var(--bg-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.Anime img {
+  width: 150px;
+  border-radius: 20px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ==========================================
+   TAGS
+========================================== */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  padding: 5px 10px;
+  border-radius: 10px;
+
+  background: var(--primary);
+  color: var(--bg-primary);
+}
+
+.tag:hover {
+  background: var(--primary-hover);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   DETAILS
+========================================== */
+
+.details {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  align-self: flex-start;
+}
+.back-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  border: none;
+  border-radius: 50%;
+  padding: var(--radius-md);
+
+  background: var(--primary);
+  color: var(--bg-primary);
+  z-index: 10;
+}
+.hero {
+  display: flex;
+  gap: 20px;
+}
+
+.hero-img {
+  border-radius: 20px;
+}
+
+.extra-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rankings {
+  display: flex;
+  gap: 10px;
+}
+
+.rankings span {
+  padding: 5px 10px;
+  border-radius: 10px;
+
+  background: var(--active);
+  color: var(--bg-primary);
+}
+
+.rating {
+  font-weight: bold;
+  background: var(--danger);
+}
+
+/* ==========================================
+   SUMMARY
+========================================== */
+
+.summary {
+  max-height: 200px;
+  overflow-y: auto;
+
+  padding: 20px;
+  border-radius: 20px;
+
+  background: var(--bg-input);
+}
+
+/* ==========================================
+   RATING STARS
+========================================== */
+
+.stars-container {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.stars {
+  width: 30px;
+  color: yellow;
+  transition: 0.2s ease;
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.more-info-btn {
+  text-decoration: none;
+  text-align: center;
+
+  padding: 10px 20px;
+  border-radius: 20px;
+
+  background: var(--primary);
+  color: var(--bg-primary);
+
+  transition: 0.2s ease;
+}
+
+.more-info-btn:hover {
+  background: var(--primary-hover);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   WATCHLIST
+========================================== */
+
+.watched {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.watched h2 {
+  text-align: center;
+  align-self: center;
+}
+
+.watch-detail {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 30px;
+  color: var(--bg-primary);
+  background: var(--success);
+  padding: 10px;
+  border-radius: 20px;
+  width: 100%;
+}
+.watch-detail:hover {
+  background: var(--bg-input);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+.watch-detail span {
+  padding: 5px 10px;
+  border-radius: 10px;
+
+  background: var(--active);
+  color: var(--bg-primary);
+}
+
+.watch-img {
+  width: 70px;
+  border-radius: 10px;
+}
+
+.watched-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer {
+  background: var(--bg-navbar);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 10px 0 20px;
+  text-transform: capitalize;
+}
