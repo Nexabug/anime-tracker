@@ -30,7 +30,9 @@ function Main({ Lists }) {
         }
       </Component>
 
-      <Component>
+      <Component
+        style={Rated.length === 0 && selected === null ? "hide-compo" : ""}
+      >
         {selected ? (
           <Details
             Lists={Lists}

@@ -9,6 +9,13 @@ function Details({
   setRated,
   Rated,
 }) {
+  const adultRating = [
+    "R - 17+ (Violence & Profanity)",
+    "R+ - Mild Nudity",
+    "Rx - Hentai",
+  ];
+
+  const teensRating = ["PG-13 - Teens 13 or older", "PG (Children)"];
   function handleClick() {
     setselected(null);
 
@@ -21,8 +28,6 @@ function Details({
             )
           : [...prev, Anime],
       );
-
-      setalready((i) => (i = false));
 
       setAnime({
         id: null,
@@ -72,7 +77,22 @@ function Details({
           <div className="rankings">
             <Rank> Popularity: {i.popularity}</Rank>
             <Rank>Rank: {i.rank}</Rank>
-            <span className="rating">{i.rating}</span>
+            <Rank
+              design={
+                adultRating.some(
+                  (a) => a.toLowerCase() === String(i.rating).toLowerCase(),
+                )
+                  ? "adults"
+                  : teensRating.some(
+                        (a) =>
+                          a.toLowerCase() === String(i.rating).toLowerCase(),
+                      )
+                    ? "teens"
+                    : "all"
+              }
+            >
+              {i.rating}
+            </Rank>
           </div>
 
           <Myrating
@@ -101,8 +121,8 @@ function Details({
   );
 }
 
-function Rank({ children }) {
-  return <span>{children}</span>;
+function Rank({ children, design }) {
+  return <span className={design}>{children}</span>;
 }
 function Tag({ items }) {
   return <span className="tag">{items.name}</span>;

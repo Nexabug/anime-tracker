@@ -1,9 +1,5 @@
-function Component({ children }) {
-  return (
-    <div className="Component">
-      <div className="children">{children}</div>
-    </div>
-  );
+function Component({ children, style }) {
+  return <div className={`Component ${style}`}>{children}</div>;
 }
 
 export default Component;
