@@ -1,4 +1,3 @@
-import { Children } from "react";
 import { useState } from "react";
 
 function Details({
@@ -12,8 +11,19 @@ function Details({
 }) {
   function handleClick() {
     setselected(null);
+
+    const already = Rated.some((i) => i.name === Anime.name) ? true : false;
     if (Anime.name !== "") {
-      setRated((prev) => [...prev, Anime]);
+      setRated((prev) =>
+        already
+          ? prev.map((i) =>
+              i.name === Anime.name ? { ...i, myrating: Anime.myrating } : i,
+            )
+          : [...prev, Anime],
+      );
+
+      setalready((i) => (i = false));
+
       setAnime({
         id: null,
         name: "",
@@ -132,6 +142,8 @@ function Myrating({ item, Anime, setAnime, setRated, Rated }) {
         myrating: hovered,
       }));
     }
+
+    console.log(Anime);
   }
   return (
     <div className="my-rating">
