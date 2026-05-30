@@ -1,6 +1,6 @@
 import Anime from "./Anime";
 
-function AnimeList({ Lists, setselected, selected }) {
+function AnimeList({ Lists, setselected }) {
   return (
     <div className="List">
       {Lists.map((i) => (
@@ -8,7 +8,6 @@ function AnimeList({ Lists, setselected, selected }) {
           key={i.mal_id}
           item={i}
           setselected={setselected}
-          selected={selected}
         />
       ))}
     </div>

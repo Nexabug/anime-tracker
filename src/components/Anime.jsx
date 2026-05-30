@@ -1,4 +1,4 @@
-function Anime({ item, setselected, selected }) {
+function Anime({ item, setselected }) {
   function handleClick() {
     setselected(item.mal_id);
   }
@@ -16,13 +16,11 @@ function Anime({ item, setselected, selected }) {
         {
           <div className="tags">
             {item.genres.map((genre) => (
-              <Tag items={genre} key={genre.mal_id}  />
+              <Tag items={genre} key={genre.mal_id} />
             ))}
           </div>
         }
       </div>
-
-      {/*  */}
     </div>
   );
 }

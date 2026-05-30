@@ -1,11 +1,4 @@
-function Watchlist({
-  Anime,
-  setAnime,
-  setRated,
-  Rated,
-  setselected,
-  selected,
-}) {
+function Watchlist({ Rated, setselected }) {
   return (
     <div className="watched">
       <h2>Watched</h2>

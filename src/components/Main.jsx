@@ -16,8 +16,6 @@ function Main({ Lists }) {
     eps: 0,
   });
 
-  console.log(Lists);
-
   return (
     <div className="main">
       <Component>
@@ -25,7 +23,6 @@ function Main({ Lists }) {
           <AnimeList
             Lists={Lists}
             setselected={setselected}
-            selected={selected}
           />
         }
       </Component>
@@ -45,13 +42,8 @@ function Main({ Lists }) {
           />
         ) : Rated.length !== 0 ? (
           <Watchlist
-            Lists={Lists}
-            setRated={setRated}
             Rated={Rated}
-            Anime={Anime}
-            setAnime={setAnime}
             setselected={setselected}
-            selected={selected}
           />
         ) : (
           <h1 style={{ textAlign: "center" }}>No WatchedList Till Now</h1>

@@ -99,8 +99,6 @@ function Details({
             item={i}
             Anime={Anime}
             setAnime={setAnime}
-            setRated={setRated}
-            Rated={Rated}
           />
 
           <div className="summary">
@@ -128,13 +126,13 @@ function Tag({ items }) {
   return <span className="tag">{items.name}</span>;
 }
 
-function Myrating({ item, Anime, setAnime, setRated, Rated }) {
+function Myrating({ item, Anime, setAnime }) {
   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const [hovered, sethovered] = useState(null);
 
   function handleEnter(i) {
-    sethovered((prev) => (prev = i));
+    sethovered(i);
   }
 
   const name = item.title;
@@ -145,25 +143,23 @@ function Myrating({ item, Anime, setAnime, setRated, Rated }) {
   const id = item.mal_id;
 
   function handleClick(i) {
-    sethovered((prev) => (prev = i));
+    sethovered(i);
 
     if (Anime.name === "") {
       setAnime((prev) => ({
         ...prev,
         name: name,
         eps: eps,
-        myrating: hovered,
+        myrating: i,
         url: image_url,
         id: id,
       }));
     } else {
       setAnime((prev) => ({
         ...prev,
-        myrating: hovered,
+        myrating: i,
       }));
     }
-
-    console.log(Anime);
   }
   return (
     <div className="my-rating">
