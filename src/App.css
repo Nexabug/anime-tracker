@@ -109,10 +109,11 @@
   display: flex;
   justify-content: center;
   gap: 30px;
-  /* max-width: 90%; */
+  max-width: 90%;
   margin: 0 auto;
   padding-top: 20px;
 }
+
 /* ==========================================
    SPINNER LAYOUT
 ========================================== */
@@ -494,7 +495,12 @@
     width: 100%;
   }
 }
-
+@media (max-width:980px){
+  .hero {
+    display: flex;
+    flex-direction: column;
+  }
+}
 @media (max-width: 1024px) {
   .main {
     max-width: 95%;
