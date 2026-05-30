@@ -1,12 +1,11 @@
-function Searchbar({searchTerm, setSearchTerm}) {
-  
+function Searchbar({ searchTerm, setSearchTerm }) {
   return (
     <input
       type="text"
       value={searchTerm}
       onChange={(e) => setSearchTerm(e.target.value)}
       className="search"
-      placeholder="Search for an anime"
+      placeholder="Search The Anime"
     />
   );
 }
