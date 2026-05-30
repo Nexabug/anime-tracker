@@ -1,4 +1,4 @@
-function Searchbar({ searchTerm, setSearchTerm }) {
+function SearchBar({ searchTerm, setSearchTerm }) {
   return (
     <input
       type="text"
@@ -10,4 +10,4 @@ function Searchbar({ searchTerm, setSearchTerm }) {
   );
 }
 
-export default Searchbar;
+export default SearchBar;

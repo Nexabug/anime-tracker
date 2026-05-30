@@ -1,10 +1,10 @@
-import Anime from "./Anime";
+import AnimeCard from "./AnimeCard";
 
 function AnimeList({ Lists, setselected }) {
   return (
     <div className="List">
       {Lists.map((i) => (
-        <Anime
+        <AnimeCard
           key={i.mal_id}
           item={i}
           setselected={setselected}

@@ -1,6 +1,6 @@
-import React from "react";
-import { Tag } from "./Tag";
-function Hero({ i }) {
+import { Tag } from "../ui/Tag";
+
+function AnimeHero({ i }) {
   return (
     <div className="hero">
       <img src={i.images.jpg.image_url} alt={i.title} className="hero-img" />
@@ -29,4 +29,4 @@ function Hero({ i }) {
   );
 }
 
-export default Hero;
+export default AnimeHero;

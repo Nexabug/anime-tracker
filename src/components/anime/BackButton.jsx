@@ -1,4 +1,4 @@
-export default function BackBtn({
+export default function BackButton({
   setAnime,
   setRated,
   setselected,

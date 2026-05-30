@@ -1,6 +1,4 @@
-import React from "react";
-
-function MoreInfo({i}) {
+function MoreInfoLink({ i }) {
   return (
     <a
       href={i.url}
@@ -13,4 +11,4 @@ function MoreInfo({i}) {
   );
 }
 
-export default MoreInfo;
+export default MoreInfoLink;

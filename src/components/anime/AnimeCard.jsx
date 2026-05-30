@@ -1,4 +1,6 @@
-function Anime({ item, setselected }) {
+import { Tag } from "../ui/Tag";
+
+function AnimeCard({ item, setselected }) {
   function handleClick() {
     setselected(item.mal_id);
   }
@@ -25,8 +27,4 @@ function Anime({ item, setselected }) {
   );
 }
 
-function Tag({ items }) {
-  return <span className="tag">{items.name}</span>;
-}
-
-export default Anime;
+export default AnimeCard;

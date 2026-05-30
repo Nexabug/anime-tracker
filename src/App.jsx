@@ -1,26 +1,23 @@
 import { useEffect, useState } from "react";
-import Footer from "./components/Footer.jsx";
-import Header from "./components/Header.jsx";
-import Main from "./components/Main.jsx";
-import Logo from "./components/Logo.jsx";
-import Searchbar from "./components/Searchbar.jsx";
-import FoundResult from "./components/FoundResult.jsx";
-import Spinner from "./components/Spinner.jsx";
-import Component from "./components/Component.jsx";
-import AnimeList from "./components/AnimeList.jsx";
-import Details from "./components/Details.jsx";
-import Watchlist from "./components/Watchlist.jsx";
-import Detailed from "./components/Detailed.jsx";
-import Hero from "./components/Hero.jsx";
-import MoreInfo from "./components/MoreInfo.jsx";
-import Summary from "./components/Summary.jsx";
-import { Myrating } from "./components/Myrating.jsx";
-import Rankings from "./components/Rankings.jsx";
-import BackBtn from "./components/BackBtn.jsx";
-
+import AnimeDetails from "./components/anime/AnimeDetails.jsx";
+import AnimeHero from "./components/anime/AnimeHero.jsx";
+import AnimeList from "./components/anime/AnimeList.jsx";
+import AnimeRankings from "./components/anime/AnimeRankings.jsx";
+import AnimeSummary from "./components/anime/AnimeSummary.jsx";
+import BackButton from "./components/anime/BackButton.jsx";
+import MoreInfoLink from "./components/anime/MoreInfoLink.jsx";
+import RatingStars from "./components/anime/RatingStars.jsx";
+import Watchlist from "./components/anime/Watchlist.jsx";
+import Footer from "./components/layout/Footer.jsx";
+import Header from "./components/layout/Header.jsx";
+import Logo from "./components/layout/Logo.jsx";
+import MainLayout from "./components/layout/MainLayout.jsx";
+import Panel from "./components/layout/Panel.jsx";
+import ResultCount from "./components/layout/ResultCount.jsx";
+import SearchBar from "./components/layout/SearchBar.jsx";
+import Spinner from "./components/ui/Spinner.jsx";
 
 import "./App.css";
-
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -54,20 +51,20 @@ function App() {
     <div className="body">
       <Header>
         <Logo />
-        <Searchbar setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
-        <FoundResult Lists={Lists} />
+        <SearchBar setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
+        <ResultCount Lists={Lists} />
       </Header>
       {!loading ? (
-        <Main>
-          <Component>
-            {<AnimeList Lists={Lists} setselected={setselected} />}
-          </Component>
-          <Component
+        <MainLayout>
+          <Panel>
+            <AnimeList Lists={Lists} setselected={setselected} />
+          </Panel>
+          <Panel
             style={Rated.length === 0 && selected === null ? "hide-compo" : ""}
           >
             {selected ? (
-              <Details>
-                <BackBtn
+              <AnimeDetails>
+                <BackButton
                   setAnime={setAnime}
                   setRated={setRated}
                   setselected={setselected}
@@ -76,22 +73,22 @@ function App() {
                 />
 
                 {Lists.filter((i) => i.mal_id === selected).map((i) => (
-                  <Detailed key={i.mal_id}>
-                    <Hero i={i} />
-                    <Rankings i={i} />
-                    <Myrating item={i} Anime={Anime} setAnime={setAnime} />
-                    <Summary i={i} />
-                    <MoreInfo i={i} />
-                  </Detailed>
+                  <div className="details" key={i.mal_id}>
+                    <AnimeHero i={i} />
+                    <AnimeRankings i={i} />
+                    <RatingStars item={i} Anime={Anime} setAnime={setAnime} />
+                    <AnimeSummary i={i} />
+                    <MoreInfoLink i={i} />
+                  </div>
                 ))}
-              </Details>
+              </AnimeDetails>
             ) : Rated.length !== 0 ? (
               <Watchlist Rated={Rated} setselected={setselected} />
             ) : (
               <h1 style={{ textAlign: "center" }}>No WatchedList Till Now</h1>
             )}
-          </Component>
-        </Main>
+          </Panel>
+        </MainLayout>
       ) : (
         <Spinner />
       )}

@@ -1,6 +1,4 @@
-import React from "react";
-
-function Summary({ i }) {
+function AnimeSummary({ i }) {
   return (
     <div className="summary">
       <p>{i.synopsis}</p>
@@ -8,4 +6,4 @@ function Summary({ i }) {
   );
 }
 
-export default Summary;
+export default AnimeSummary;

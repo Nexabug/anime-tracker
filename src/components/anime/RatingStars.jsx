@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function Myrating({ item, Anime, setAnime }) {
+function RatingStars({ item, Anime, setAnime }) {
   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const [hovered, sethovered] = useState(null);
@@ -65,3 +65,5 @@ export function Myrating({ item, Anime, setAnime }) {
     </div>
   );
 }
+
+export default RatingStars;

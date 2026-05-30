@@ -1,5 +1,5 @@
-function Component({ children, style }) {
+function Panel({ children, style = "" }) {
   return <div className={`Component ${style}`}>{children}</div>;
 }
 
-export default Component;
+export default Panel;

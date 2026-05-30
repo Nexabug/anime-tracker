@@ -1,4 +1,4 @@
-function Header({ searchTerm, setSearchTerm, Lists, children }) {
+function Header({ children }) {
   return <div className="header">{children}</div>;
 }
 

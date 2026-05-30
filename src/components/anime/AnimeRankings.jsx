@@ -1,6 +1,6 @@
-import React from "react";
-import { Rank } from "./Rank";
-function Rankings({ i }) {
+import { Rank } from "../ui/Rank";
+
+function AnimeRankings({ i }) {
   const adultRating = [
     "R - 17+ (Violence & Profanity)",
     "R+ - Mild Nudity",
@@ -31,4 +31,4 @@ function Rankings({ i }) {
   );
 }
 
-export default Rankings;
+export default AnimeRankings;

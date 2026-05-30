@@ -1,6 +1,4 @@
-import React from "react";
-
-function FoundResult({ Lists }) {
+function ResultCount({ Lists }) {
   return (
     <div>
       <h4>
@@ -10,4 +8,4 @@ function FoundResult({ Lists }) {
   );
 }
 
-export default FoundResult;
+export default ResultCount;
