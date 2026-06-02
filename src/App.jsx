@@ -24,7 +24,10 @@ function App() {
   const [Lists, setLists] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selected, setselected] = useState(null);
-  const [Rated, setRated] = useState([]);
+  const [Rated, setRated] = useState(() => {
+    const data = localStorage.getItem("rated");
+    return data ? JSON.parse(data) : [];
+  });
   const [Anime, setAnime] = useState({
     id: null,
     name: "",
@@ -47,6 +50,9 @@ function App() {
     getAnime();
   }, [searchTerm]);
 
+  useEffect(() => {
+    localStorage.setItem("rated", JSON.stringify(Rated));
+  }, [Rated]);
   return (
     <div className="body">
       <Header>
