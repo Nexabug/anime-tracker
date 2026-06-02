@@ -1,4 +1,4 @@
-function Watchlist({ Rated, setselected }) {
+function Watchlist({ Rated, setselected, handleDelete }) {
   return (
     <div className="watched">
       <h2>Watched</h2>
@@ -16,6 +16,12 @@ function Watchlist({ Rated, setselected }) {
                 <h3> Episodes: {i.eps}</h3>
                 <h3> My Rating: {i.myrating}</h3>
               </div>
+              <button
+                className="delete-btn"
+                onClick={(e) => handleDelete(e, i.name)}
+              >
+                Delete
+              </button>
             </>
           )}
         </div>

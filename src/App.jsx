@@ -53,6 +53,11 @@ function App() {
   useEffect(() => {
     localStorage.setItem("rated", JSON.stringify(Rated));
   }, [Rated]);
+
+  function handleDelete(e, name) {
+    e.stopPropagation();
+    setRated((prev) => prev.filter((p) => p.name !== name));
+  }
   return (
     <div className="body">
       <Header>
@@ -89,7 +94,11 @@ function App() {
                 ))}
               </AnimeDetails>
             ) : Rated.length !== 0 ? (
-              <Watchlist Rated={Rated} setselected={setselected} />
+              <Watchlist
+                Rated={Rated}
+                setselected={setselected}
+                handleDelete={handleDelete}
+              />
             ) : (
               <h1 style={{ textAlign: "center" }}>No WatchedList Till Now</h1>
             )}

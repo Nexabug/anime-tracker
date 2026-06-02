@@ -449,6 +449,20 @@
   gap: 5px;
 }
 
+.delete-btn {
+  background-color: var(--danger);
+  border: none;
+  outline: none;
+  padding: var(--radius-sm);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  margin-left: auto;
+  font-size: large;
+  z-index: 2;
+}
+.delete-btn:hover {
+  box-shadow: 0 0 20px rgb(255, 0, 0);
+}
 /* ==========================================
    FOOTER
 ========================================== */
