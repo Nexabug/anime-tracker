@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AnimeDetails from "./components/anime/AnimeDetails.jsx";
 import AnimeHero from "./components/anime/AnimeHero.jsx";
 import AnimeList from "./components/anime/AnimeList.jsx";
@@ -21,14 +21,14 @@ import "./App.css";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [Lists, setLists] = useState([]);
+  const [animeList, setAnimeList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [selected, setselected] = useState(null);
-  const [Rated, setRated] = useState(() => {
+  const [selectedAnimeId, setSelectedAnimeId] = useState(null);
+  const [ratedAnime, setRatedAnime] = useState(() => {
     const data = localStorage.getItem("rated");
     return data ? JSON.parse(data) : [];
   });
-  const [Anime, setAnime] = useState({
+  const [anime, setAnime] = useState({
     id: null,
     name: "",
     url: "",
@@ -37,66 +37,102 @@ function App() {
   });
 
   useEffect(() => {
-    async function getAnime() {
-      //starting the loading
-      setLoading(true);
-      const res = await fetch(`https://api.jikan.moe/v4/anime?q=${searchTerm}`);
-      const data = await res.json();
-      setLists(data.data);
-      // finshing the loading
-      setLoading(false);
-    }
+    const id = setTimeout(() => {
+      async function getAnime() {
+        setLoading(true);
 
-    getAnime();
+        const res = await fetch(
+          `https://api.jikan.moe/v4/anime?q=${searchTerm}`,
+        );
+        const data = await res.json();
+
+        setAnimeList(data.data);
+        setLoading(false);
+      }
+
+      getAnime();
+    }, 1000);
+
+    return () => {
+      clearTimeout(id);
+    };
   }, [searchTerm]);
 
   useEffect(() => {
-    localStorage.setItem("rated", JSON.stringify(Rated));
-  }, [Rated]);
+    localStorage.setItem("rated", JSON.stringify(ratedAnime));
+  }, [ratedAnime]);
 
+  const inputEle = useRef(null);
+
+  useEffect(() => {
+    inputEle.current.focus();
+  }, []);
+
+  useEffect(() => {
+    
+    function handleEnterPress(e) {
+      if (document.activeElement === inputEle.current) return;
+      if (e.key === "Enter") {
+        setSearchTerm("");
+        inputEle.current.focus();
+      }
+    }
+    document.addEventListener("keydown", (e) => handleEnterPress(e));
+  }, []);
   function handleDelete(e, name) {
     e.stopPropagation();
-    setRated((prev) => prev.filter((p) => p.name !== name));
+    setRatedAnime((prev) => prev.filter((p) => p.name !== name));
   }
+
   return (
     <div className="body">
       <Header>
         <Logo />
-        <SearchBar setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
-        <ResultCount Lists={Lists} />
+        <SearchBar
+          setSearchTerm={setSearchTerm}
+          searchTerm={searchTerm}
+          inputEle={inputEle}
+        />
+        <ResultCount Lists={animeList} />
       </Header>
       {!loading ? (
         <MainLayout>
           <Panel>
-            <AnimeList Lists={Lists} setselected={setselected} />
+            <AnimeList Lists={animeList} setselected={setSelectedAnimeId} />
           </Panel>
           <Panel
-            style={Rated.length === 0 && selected === null ? "hide-compo" : ""}
+            style={
+              ratedAnime.length === 0 && selectedAnimeId === null
+                ? "hide-compo"
+                : ""
+            }
           >
-            {selected ? (
+            {selectedAnimeId ? (
               <AnimeDetails>
                 <BackButton
                   setAnime={setAnime}
-                  setRated={setRated}
-                  setselected={setselected}
-                  Rated={Rated}
-                  Anime={Anime}
+                  setRated={setRatedAnime}
+                  setselected={setSelectedAnimeId}
+                  Rated={ratedAnime}
+                  Anime={anime}
                 />
 
-                {Lists.filter((i) => i.mal_id === selected).map((i) => (
-                  <div className="details" key={i.mal_id}>
-                    <AnimeHero i={i} />
-                    <AnimeRankings i={i} />
-                    <RatingStars item={i} Anime={Anime} setAnime={setAnime} />
-                    <AnimeSummary i={i} />
-                    <MoreInfoLink i={i} />
-                  </div>
-                ))}
+                {animeList
+                  .filter((i) => i.mal_id === selectedAnimeId)
+                  .map((i) => (
+                    <div className="details" key={i.mal_id}>
+                      <AnimeHero i={i} />
+                      <AnimeRankings i={i} />
+                      <RatingStars item={i} Anime={anime} setAnime={setAnime} />
+                      <AnimeSummary i={i} />
+                      <MoreInfoLink i={i} />
+                    </div>
+                  ))}
               </AnimeDetails>
-            ) : Rated.length !== 0 ? (
+            ) : ratedAnime.length !== 0 ? (
               <Watchlist
-                Rated={Rated}
-                setselected={setselected}
+                Rated={ratedAnime}
+                setselected={setSelectedAnimeId}
                 handleDelete={handleDelete}
               />
             ) : (
